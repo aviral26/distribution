@@ -2,7 +2,7 @@ module github.com/docker/distribution
 
 go 1.12
 
-replace github.com/opencontainers/artifacts => github.com/aviral26/artifacts v0.0.0-20210401062346-2b83ac8c6d72
+replace github.com/opencontainers/artifacts => github.com/aviral26/artifacts v0.0.3
 
 require (
 	github.com/Azure/azure-sdk-for-go v16.2.1+incompatible

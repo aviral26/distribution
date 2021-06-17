@@ -8,8 +8,8 @@ github.com/Shopify/logrus-bugsnag v0.0.0-20171204204709-577dee27f20d h1:UrqY+r/O
 github.com/Shopify/logrus-bugsnag v0.0.0-20171204204709-577dee27f20d/go.mod h1:HI8ITrYtUY+O+ZhtlqUnD8+KwNPOyugEhfP9fdUIaEQ=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=
 github.com/alecthomas/units v0.0.0-20151022065526-2efee857e7cf/go.mod h1:ybxpYRFXyAe+OPACYpWeL0wqObRcbAqCMya13uyzqw0=
-github.com/aviral26/artifacts v0.0.0-20210401062346-2b83ac8c6d72 h1:wdeNiQZOLF3PTtEQ2xndkMV7kQC1qejSdZidszgWpaY=
-github.com/aviral26/artifacts v0.0.0-20210401062346-2b83ac8c6d72/go.mod h1:IBQOjhxIKxb9G4h9NiWAJLGBgKPlIy27tcpPDTAfUQw=
+github.com/aviral26/artifacts v0.0.3 h1:F+XBw93sXm9H7iajUEl0DhbbvCg2e/k6e4lVY2EYhC4=
+github.com/aviral26/artifacts v0.0.3/go.mod h1:IBQOjhxIKxb9G4h9NiWAJLGBgKPlIy27tcpPDTAfUQw=
 github.com/aws/aws-sdk-go v1.15.11 h1:m45+Ru/wA+73cOZXiEGLDH2d9uLN3iHqMc0/z4noDXE=
 github.com/aws/aws-sdk-go v1.15.11/go.mod h1:mFuSZ37Z9YOHbQEwBWztmVzqXrEkub65tZoCYDt7FT0=
 github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24TaqPxmxbtue+5NUziq4I4S80YR8gNf3Q=

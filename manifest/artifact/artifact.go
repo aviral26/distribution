@@ -14,7 +14,7 @@ import (
 // ArtifactVersion provides a pre-initialized version structure for this
 // packages Artifact version of the manifest.
 var ArtifactVersion = manifest.Versioned{
-	SchemaVersion: 2,
+	SchemaVersion: 3,
 	MediaType:     v2.MediaTypeArtifactManifest,
 }
 
@@ -62,30 +62,16 @@ func (a Artifact) References() []distribution.Descriptor {
 			Size:      a.inner.Blobs[i].Size,
 		}
 	}
-
-	if a.inner.Config != nil {
-		blobs = append(blobs, distribution.Descriptor{
-			MediaType: a.inner.Config.MediaType,
-			Digest:    a.inner.Config.Digest,
-			Size:      a.inner.Config.Size,
-		})
-	}
-
 	return blobs
 }
 
-// Manifests returns the distribution descriptors for the manifests that this artifact is linked to.
-func (a Artifact) Manifests() []distribution.Descriptor {
-	dependsOn := make([]distribution.Descriptor, len(a.inner.Manifests))
-	for i := range a.inner.Manifests {
-		dependsOn[i] = distribution.Descriptor{
-			MediaType: a.inner.Manifests[i].MediaType,
-			Digest:    a.inner.Manifests[i].Digest,
-			Size:      a.inner.Manifests[i].Size,
-		}
+// SubjectManifest returns the the subject manifest this artifact is linked to.
+func (a Artifact) SubjectManifest() distribution.Descriptor {
+	return distribution.Descriptor{
+		MediaType: a.inner.SubjectManifest.MediaType,
+		Digest:    a.inner.SubjectManifest.Digest,
+		Size:      a.inner.SubjectManifest.Size,
 	}
-
-	return dependsOn
 }
 
 // DeserializedArtifact wraps Artifact with a copy of the original JSON.

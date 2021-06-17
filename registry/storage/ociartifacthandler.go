@@ -92,16 +92,13 @@ func (ah *ociArtifactHandler) verifyManifest(ctx context.Context, da artifact.De
 			return err
 		}
 
-		// All manifests to link to must exist.
-		for _, manifestDesc := range da.Manifests() {
-			exists, err := manifestService.Exists(ctx, manifestDesc.Digest)
-			if err != nil {
-				errs = append(errs, err)
-			} else {
-				if !exists {
-					errs = append(errs, distribution.ErrManifestUnknownRevision{Revision: manifestDesc.Digest})
-				}
-			}
+		// Validate subject manifest.
+		subject := da.SubjectManifest()
+		exists, err := manifestService.Exists(ctx, subject.Digest)
+		if !exists || err == distribution.ErrBlobUnknown {
+			errs = append(errs, distribution.ErrManifestBlobUnknown{Digest: subject.Digest})
+		} else if err != nil {
+			errs = append(errs, err)
 		}
 	}
 
@@ -114,11 +111,12 @@ func (ah *ociArtifactHandler) verifyManifest(ctx context.Context, da artifact.De
 
 func (ah *ociArtifactHandler) linkManifests(ctx context.Context, da artifact.DeserializedArtifact, revision digest.Digest) error {
 	daArtifactType := da.ArtifactType()
-	// Link the artifact as referrer metadata to each dependsOn manifest.
-	for _, manifestDesc := range da.Manifests() {
-		if err := ah.referrersStoreFunc(manifestDesc.Digest, daArtifactType).linkBlob(ctx, distribution.Descriptor{Digest: revision}); err != nil {
-			return err
-		}
+
+	// Index referrer metadata for the subject.
+	subject := da.SubjectManifest()
+	if err := ah.referrersStoreFunc(subject.Digest, daArtifactType).linkBlob(ctx, distribution.Descriptor{Digest: revision}); err != nil {
+		return err
 	}
+
 	return nil
 }

@@ -55,7 +55,7 @@ func (mrmh *referrersHandler) Artifacts(w http.ResponseWriter, r *http.Request) 
 	dcontext.GetLogger(mrmh).Debug("Artifacts")
 
 	// This can be empty
-	artifactType := r.FormValue("artifact-type")
+	artifactType := r.FormValue("referenceType")
 
 	if mrmh.Tag != "" {
 		tags := mrmh.Repository.Tags(mrmh)

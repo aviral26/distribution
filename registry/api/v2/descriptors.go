@@ -707,7 +707,7 @@ var routeDescriptors = []RouteDescriptor{
 
 	{
 		Name:        RouteNameManifestLinkedArtifacts,
-		Path:        "/v2/_ext/oci-artifacts/v1/{name:" + reference.NameRegexp.String() + "}/manifests/{reference:" + reference.TagRegexp.String() + "|" + digest.DigestRegexp.String() + "}/references",
+		Path:        "/v2/_ext/oci-artifacts/v1-rc1/{name:" + reference.NameRegexp.String() + "}/manifests/{reference:" + reference.TagRegexp.String() + "|" + digest.DigestRegexp.String() + "}/referrers",
 		Entity:      "Linked artifacts",
 		Description: "Retrieve information about artifacts linked to this manifest.",
 		Methods: []MethodDescriptor{
@@ -728,7 +728,7 @@ var routeDescriptors = []RouteDescriptor{
 						},
 						QueryParameters: []ParameterDescriptor{
 							{
-								Name:        "artifact-type",
+								Name:        "referenceType",
 								Type:        "query",
 								Format:      "<artifactType>",
 								Description: `Artifact type of the requested linked artifacts.`,
